@@ -11,8 +11,22 @@ jobs:
       - run:
           name: init
           command: mvn clean install -Dmaven.test.skip=true -Dinit
+      - run:
+          name: jars
+          command: mvn clean install -Dmaven.test.skip=true -Djars
+      - run:
+          name: other
+          command: mvn clean install -Dmaven.test.skip=true
+      - run:
+          name: wars
+          command: mvn clean install -Dmaven.test.skip=true -Dwars
+      - run:
+          name: ears
+          command: mvn clean install -Dmaven.test.skip=true -Dears -P generate-distri
       - save_cache:
           key: maven-cache-v1
           paths:
             - /root/.m2
+      - store_artifacts:
+          path: sigem/SIGEM_DIST/
 
