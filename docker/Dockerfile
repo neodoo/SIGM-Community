@@ -19,6 +19,8 @@ RUN mkdir -p /usr/share/maven /usr/share/maven/ref \
 
 RUN ln -s /usr/lib/jvm/java-6-oracle /usr/lib/jvm/java
 
+RUN apt-get install -y git ssh tar gzip ca-certificates
+
 COPY settings.xml $MAVEN_CONFIG/settings.xml
 ENV MAVEN_OPTS="-Xmx512m -XX:MaxPermSize=128m"
 

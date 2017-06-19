@@ -1,0 +1,18 @@
+version: 2.0
+jobs:
+  build:
+	working_directory: /sigm
+    docker:
+      - image: luisperlaz/sigm
+	steps:
+      - checkout
+	  - restore_cache:
+			keys:
+				- maven-cache-v1
+      - run:
+			name: init
+			command: mvn clean install -Dmaven.test.skip=true -Dinit
+	  - save_cache:
+			key: maven-cache-v1
+			paths:
+				- /root/.m2
